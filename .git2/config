@@ -1,0 +1,8 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[remote "master"]
+	url = https://github.com/purlantov/NestJS_Accedia_workshop
+	fetch = +refs/heads/*:refs/remotes/master/*
