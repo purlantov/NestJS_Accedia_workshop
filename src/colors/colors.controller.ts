@@ -1,6 +1,7 @@
 import { ColorsService } from './colors.service';
-import { Controller, Get, Param, ParseIntPipe, Post, Body } from "@nestjs/common";
+import { Controller, Get, Param, ParseIntPipe, Post, Body, ParseUUIDPipe } from "@nestjs/common";
 import { ColorEntity } from 'src/colors/color.entity';
+import { v4 as uuid } from 'uuid';
 
 @Controller('colors')
 export class ColorsController {
@@ -13,11 +14,11 @@ export class ColorsController {
 
     @Get(':color')
     find(@Param('color') color: string): ColorEntity {
-        return this.dbService.find(x => x.color == color);
+        return this.dbService.find(x => x.name == color);
     }
 
     @Get(':id')
-    public getById(@Param('id', ParseIntPipe) id: number): ColorEntity {
+    public getById(@Param('id', ParseUUIDPipe) id: string): ColorEntity {
         return this.dbService.get(id);
     }
 
