@@ -1,11 +1,12 @@
 import { ColorEntity, Code } from './color.entity';
 import { Injectable } from '@nestjs/common';
-import { Context } from '../share/models/context';
+import { Context } from '../shared/models/context';
+import { ConverterService } from '../shared/convert';
 
 @Injectable()
 export class ColorsService {
 
-    constructor(private dbRecords: Context) { }
+    constructor(private dbRecords: Context, private converterService: ConverterService) { }
 
     add(entity: ColorEntity): number {
         return this.dbRecords.colors.push(entity);
@@ -37,5 +38,9 @@ export class ColorsService {
     delete(colorId: string): any {
         const index = this.dbRecords.colors.findIndex(x => x.id === colorId)
         return this.dbRecords.colors.splice(index, 1);
+    }
+
+    convert(red: number, green: number, blue: number): number[] {
+        return this.converterService.convertRgbToCmyk(red, green, blue,);
     }
 }

@@ -1,4 +1,4 @@
-import { EntityOptions } from "src/share/models/entity-options.entity";
+import { EntityOptions } from "src/shared/models/entity-options.entity";
 
 export class ColorEntity extends EntityOptions {
     category: string;

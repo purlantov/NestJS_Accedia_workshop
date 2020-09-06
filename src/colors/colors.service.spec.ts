@@ -1,13 +1,15 @@
 import { ColorsService } from "./colors.service";
 import { ColorEntity, Code } from "./color.entity";
 import { v4 as uuid } from 'uuid';
-import { Context } from '../share/models/context';
+import { Context } from '../shared/models/context';
+import { ConverterService } from "src/shared/convert";
 
 const id: string = uuid();
 
 describe('ColorsService', () => {
     let db: Context;
     let service: ColorsService;
+    let convertor: ConverterService;
 
     beforeEach(() => {
 
@@ -32,7 +34,7 @@ describe('ColorsService', () => {
             }
         );
 
-        service = new ColorsService(db);
+        service = new ColorsService(db, convertor);
     });
 
     afterEach(() => {
